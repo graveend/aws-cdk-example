@@ -1,22 +1,17 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from 'aws-cdk-lib';
-import { AwsCdkExampleStack } from '../lib/aws-cdk-example-stack';
+import "source-map-support/register";
+import * as cdk from "aws-cdk-lib";
+import { AwsCdkExampleStack } from "../lib/aws-cdk-example-stack";
+import { AwsCdkExampleDbStack } from "../lib/aws-cdk-example-db-stack";
 
 const app = new cdk.App();
-new AwsCdkExampleStack(app, 'AwsCdkExampleStack', {
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
+const env = { account: "521013699958", region: "eu-west-2" };
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
-
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  env: { account: '521013699958', region: 'eu-west-2' },
-
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+const awsCdkExampleStack = new AwsCdkExampleStack(app, "AwsCdkExampleStack", {
+  env,
 });
 
+new AwsCdkExampleDbStack(app, "AwsCdkExampleDbStack", {
+  env,
+  lambdaFunctions: awsCdkExampleStack.lambdaFunctions,
+});

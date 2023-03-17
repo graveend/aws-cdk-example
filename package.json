@@ -5,10 +5,13 @@
     "aws-cdk-example": "bin/aws-cdk-example.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "lambda-install": "cd lib/lambda && npm install",
+    "lambda-clean": "cd lib/lambda && rm -rf node_modules/",
+    "clean": "npm run lambda-clean && tsc --build --clean",
+    "build": "npm run clean && npm run lambda-install && tsc && npm run test",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "deploy": "npm run build && cdk deploy --all"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.111",
