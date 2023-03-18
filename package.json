@@ -8,7 +8,7 @@
     "lambda-install": "cd lib/lambda && npm install",
     "lambda-clean": "cd lib/lambda && rm -rf node_modules/",
     "clean": "npm run lambda-clean && tsc --build --clean",
-    "build": "npm run clean && npm run lambda-install && tsc && npm run test",
+    "build": "npm run clean && npm run lambda-install && npm run install && tsc && npm run test",
     "test": "jest",
     "cdk": "cdk",
     "deploy": "cdk deploy --all"
