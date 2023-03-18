@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as path from "path";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
+import { MyLambda } from "./constructs/myLambda";
 
 export class AwsCdkExampleStack extends cdk.Stack {
   lambdaFunction: lambda.Function;
@@ -15,29 +16,23 @@ export class AwsCdkExampleStack extends cdk.Stack {
 
     // The code that defines your stack goes here
     //  lambda function definition
-    this.lambdaFunction = new lambda.Function(this, "lambda-function", {
-      runtime: lambda.Runtime.NODEJS_16_X,
+    this.lambdaFunction = new MyLambda(this, "lambda-function", {
       handler: "index.lambdaHandler",
-      code: lambda.Code.fromAsset(path.join(__dirname, "/lambda")),
     });
 
-    this.lambdaMessagesPostHandler = new lambda.Function(
+    this.lambdaMessagesPostHandler = new MyLambda(
       this,
       "lambda-messages-post-handler",
       {
-        runtime: lambda.Runtime.NODEJS_16_X,
         handler: "index.lambdaMessagesPostHandler",
-        code: lambda.Code.fromAsset(path.join(__dirname, "/lambda")),
       }
     );
 
-    this.lambdaMessagesGetAllHandler = new lambda.Function(
+    this.lambdaMessagesGetAllHandler = new MyLambda(
       this,
       "lambda-messages-get-all-handler",
       {
-        runtime: lambda.Runtime.NODEJS_16_X,
         handler: "index.lambdaMessagesGetAllHandler",
-        code: lambda.Code.fromAsset(path.join(__dirname, "/lambda")),
       }
     );
 

@@ -16,6 +16,7 @@ export class AwsCdkExampleDbStack extends cdk.Stack {
     const table = new dynamodb.Table(this, TABLE_NAME, {
       tableName: TABLE_NAME,
       partitionKey: { name: TABLE_PRIMARY_KEY, type: dynamodb.AttributeType.STRING },
+      removalPolicy: cdk.RemovalPolicy.DESTROY
     });
     props.lambdaFunctions.forEach(lambdaFunction => table.grantFullAccess(lambdaFunction));
   }
