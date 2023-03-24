@@ -11,7 +11,7 @@
     "build": "npm run clean && npm run lambda-install && npm install && tsc && npm run test",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "cdk deploy --all"
+    "deploy": "npm run cdk deploy -- --all"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.111",
