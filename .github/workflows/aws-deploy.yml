@@ -17,4 +17,4 @@ jobs:
       - name: Install dependencies
         run: npm run build
       - name: Deploy stack
-        run: npm run deploy --require-approval never
+        run: npm run deploy -- --require-approval never
