@@ -1,6 +1,6 @@
 // Create the DynamoDB service client module using ES6 syntax.
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DEFAULT_REGION, TABLE_NAME } from "../constants";
+import { DEFAULT_REGION, TABLE_NAME } from "../../../constants";
 // Create an Amazon DynamoDB service client object.
 export const ddbClient = new DynamoDBClient({ region: DEFAULT_REGION });
 // Create a service client module using ES6 syntax.
@@ -9,7 +9,6 @@ import {
   PutCommand,
   ScanCommand,
 } from "@aws-sdk/lib-dynamodb";
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from "uuid";
 
 const marshallOptions = {
